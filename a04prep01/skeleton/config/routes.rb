@@ -1,19 +1,20 @@
 Links::Application.routes.draw do
-  get 'sessions/index'
+  get 'links/new'
 
-  get 'sessions/new'
+  get 'links/edit'
 
-  get 'sessions/create'
+  get 'links/update'
 
-  get 'sessions/destroy'
+  get 'links/create'
 
-  get 'sessions/edit'
+  get 'links/destroy'
 
-  get 'sessions/update'
+  get 'links/show'
 
-  get 'sessions/show'
+  get 'links/index'
 
   resources :users, only: [:new, :create]
   resources :comments, only: [:index, :new, :create, :destroy, :edit, :update]
   resources :links, only: [:index, :new, :create, :destroy, :edit, :update]
+  resource :session, only: [:index, :new, :create, :destroy, :edit, :update]
 end

@@ -8,17 +8,20 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @user = User.where(params[:user][:username], params[:user][:password])
+    @user = User.find_by_credentials(params[:user][:username], params[:user][:password])
 
     if @user
-      redirect_to links_url
       login(@user)
+      redirect_to links_url
     else
+      flash.now[:errors] = ["invalid username or pass"]
       render :new
     end
   end
 
   def destroy
+    logout
+    redirect_to new_session_url
   end
 
   def edit

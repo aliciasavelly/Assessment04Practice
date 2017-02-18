@@ -1,12 +1,14 @@
 class User < ActiveRecord::Base
-  validates :password, length: {minimum: 6, message: "is too short (minimum is 6 characters)"}
-  validates :password_digest, presence: {message: "can't be blank"}
-  validates :session_token, :username, presence: true
-  before_validation :ensure_session_token
+  attr_reader :password
+  after_initialize :ensure_session_token
+
+  validates :password, length: {minimum: 6, allow_nil: true}
+  # validates :password_digest, presence: {message: "can't be blank"}
+  validates :session_token, :password_digest, :username, presence: true
+
   has_many :links
   has_many :comments
 
-  attr_reader :password
 
   def self.generate_session_token
     SecureRandom::urlsafe_base64(16)
@@ -27,12 +29,13 @@ class User < ActiveRecord::Base
 
   def reset_session_token!
     self.session_token = User.generate_session_token
+    # self.session_token = SecureRandom::urlsafe_base64(16)
     self.save!
     self.session_token
   end
 
   def self.find_by_credentials(username, password)
-    user = Usr.find_by(username: username)
+    user = User.find_by(username: username)
     return user if user && user.is_password?(password)
     nil
   end
