@@ -43,6 +43,7 @@ class LinksController < ApplicationController
   end
 
   def index
+    @links = Link.all
   end
 
   private

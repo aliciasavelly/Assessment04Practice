@@ -1,2 +1,13 @@
-<h1>Links#new</h1>
-<p>Find me in app/views/links/new.html.erb</p>
+<h1>New Link</h1>
+
+<form action=" <%= links_url(@link) %>" method="post">
+  <%= auth_token %>
+  <label for="title">Title</label>
+  <input type="text" name="link[title]" id="title">
+
+  <label for="url">URL</label>
+  <input type="text" name="link[url]" value="" id="URL">
+
+  <input type="submit" name="" value="Create New Link">
+
+</form>

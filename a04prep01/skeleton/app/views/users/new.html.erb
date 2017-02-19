@@ -1,12 +1,12 @@
-<h1>NEW USER SIGN UP</h1>
+<h1>NEW USER SIGN UP Sign Up</h1>
 
 <form action=" <%= users_url %>" method="post">
   <%= auth_token %>
-  <label for="username">username</label>
-  <input type="text" name="user[username]">
+  <label for="username">Username</label>
+  <input type="text" name="user[username]" id="username">
 
-  <label for="password">password</label>
-  <input type="text" name="user[password]">
+  <label for="password">Password</label>
+  <input type="password" name="user[password]" id="password">
 
-  <input type="submit" name="" value="sign up">
+  <input type="submit" name="" value="Sign Up">
 </form>
