@@ -9,7 +9,7 @@ By: <%= @link.user.username %>
   <% @link.comments.each do |comment| %>
   <li>
     <%= comment.body %>
-    <% button_to "Remove Comment", comment_url(comment), method: :delete %>
+    <%= button_to "Remove Comment", comment_url(comment), method: :delete %>
   </li>
   <% end %>
 </ul>
