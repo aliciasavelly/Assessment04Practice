@@ -1,20 +1,22 @@
 class SessionsController < ApplicationController
-  def index
-  end
+  # def index
+  # end
 
   def new
-    @user = User.new
-    render :new
+    # @user = User.new
+    # render :new
   end
 
   def create
-    @user = User.find_by_credentials(params[:user][:username], params[:user][:password])
+    @user = User.find_by_credentials(
+      params[:user][:username],
+      params[:user][:password])
 
     if @user
       login(@user)
       redirect_to links_url
     else
-      flash.now[:errors] = ["invalid username or pass"]
+      flash.now[:errors] = ["Invalid username or password"]
       render :new
     end
   end
@@ -24,17 +26,17 @@ class SessionsController < ApplicationController
     redirect_to new_session_url
   end
 
-  def edit
-  end
+  # def edit
+  # end
+  #
+  # def update
+  # end
+  #
+  # def show
+  # end
 
-  def update
-  end
-
-  def show
-  end
-
-  private
-  def user_params
-    params.require(:user).permit(:password, :username)
-  end
+  # private
+  # def user_params
+  #   params.require(:user).permit(:password, :username)
+  # end
 end

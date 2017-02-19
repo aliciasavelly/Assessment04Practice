@@ -1,9 +1,9 @@
-# require 'rails_helper'
+require 'rails_helper'
 
 class UsersController < ApplicationController
   def new
     @user = User.new
-    render :new
+    # render :new
   end
 
   def create

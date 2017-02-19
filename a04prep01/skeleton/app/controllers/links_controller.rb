@@ -1,6 +1,14 @@
 class LinksController < ApplicationController
   before_filter :require_signed_in!
 
+  def index
+    @links = Link.all
+  end
+
+  def show
+    @link = Link.find(params[:id])
+  end
+
   def new
     @link = Link.new
     # render :new
@@ -25,8 +33,7 @@ class LinksController < ApplicationController
 
   def update
     @link = current_user.links.find(params[:id])
-    p current_user.id
-    p params
+
     if @link.update_attributes(link_params)
       redirect_to link_url(@link)
     else
@@ -36,18 +43,13 @@ class LinksController < ApplicationController
   end
 
   def destroy
-  end
-
-  def show
-    @link = Link.find(params[:id])
-  end
-
-  def index
-    @links = Link.all
+    link = Link.find(params[:id])
+    link.destroy
+    redirect_to links_url
   end
 
   private
   def link_params
-    params.require(:link).permit(:title, :url, :user_id)
+    params.require(:link).permit(:title, :url)
   end
 end

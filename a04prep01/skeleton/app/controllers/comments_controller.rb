@@ -14,18 +14,18 @@ class CommentsController < ApplicationController
     redirect_to link_url(comment.link)
   end
 
-  def show
-  end
+  # def show
+  # end
 
   def destroy
     @comment = Comment.find(params[:id])
     @comment.destroy
-    redirect_to link_url(@comment.link)
+    redirect_to link_url(@comment.link_id)
   end
 
   private
 
   def comment_params
-    params.require(:comment).permit(:body, :user_id, :link_id)
+    params.require(:comment).permit(:body, :link_id)
   end
 end
