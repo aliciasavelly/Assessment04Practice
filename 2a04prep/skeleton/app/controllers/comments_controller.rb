@@ -16,8 +16,9 @@ class CommentsController < ApplicationController
 
   def destroy
     comment = Comment.find(params[:id])
+    link = comment.link
     comment.destroy
-    redirect_to link_url(comment.link)
+    redirect_to link_url(link)
   end
 
   private

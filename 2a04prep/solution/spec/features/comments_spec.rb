@@ -44,6 +44,7 @@ feature "Deleting comments" do
   end
 
   it "shows the link show page on click" do
+    # save_and_open_page
     click_button 'Remove Comment'
     expect(current_path).to eq(link_path(Link.last))
   end

@@ -2,9 +2,11 @@ class LinksController < ApplicationController
   before_filter :require_signed_in!
 
   def index
+    @links = Link.all
   end
 
   def show
+    @link = Link.find(params[:id])
   end
 
   def new
