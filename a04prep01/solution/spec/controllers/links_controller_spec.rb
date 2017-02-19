@@ -141,6 +141,7 @@ RSpec.describe LinksController, :type => :controller do
 
       it "renders the edit link page" do
         get :edit, id: 1
+        # save_and_open_page
         expect(response).to render_template("edit")
       end
     end

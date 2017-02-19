@@ -1,4 +1,12 @@
 Links::Application.routes.draw do
+  get 'comments/new'
+
+  get 'comments/create'
+
+  get 'comments/show'
+
+  get 'comments/destroy'
+
   get 'links/new'
 
   get 'links/edit'
