@@ -10,18 +10,9 @@
 #  updated_at :datetime         not null
 #
 
-require 'rails_helper'
+class Comment < ActiveRecord::Base
+  validates :body, :user, :link, presence: true
 
-begin
-  Comment
-rescue
-  Comment = nil
-end
-
-RSpec.describe Comment, :type => :model do
-  it { should validate_presence_of(:body) }
-  it { should validate_presence_of(:user) }
-  it { should validate_presence_of(:link) }
-  it { should belong_to(:user) }
-  it { should belong_to(:link) }
+  belongs_to :user
+  belongs_to :link
 end

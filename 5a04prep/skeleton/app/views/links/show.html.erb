@@ -1,0 +1,29 @@
+<%= User.find(@link.user_id).username %>
+<%= @link.title %>
+<%= @link.url %>
+
+<%= link_to("Links", links_url) %>
+<%= link_to("Edit Link", edit_link_url) %>
+
+<h3>Comments</h3>
+<ul>
+  <% @link.comments.each do |comment| %>
+  <li>
+    <%= comment.body %>
+    <%= button_to("Remove Comment", comment_url, method: :delete) %>
+  </li>
+  <% end %>
+</ul>
+
+<h3>Add Comment</h3>
+<form class="" action="<%= comments_url %>" method="post">
+  <%= auth_token %>
+  <label>
+    Comment
+    <input type="text" name="comment[body]" value="">
+  </label>
+
+  <input type="hidden" name="comment[link_id]" value="<%= @link.id %>">
+
+  <input type="submit" name="" value="Add Comment">
+</form>
