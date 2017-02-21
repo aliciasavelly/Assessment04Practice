@@ -1,0 +1,28 @@
+<%= @link.user.username %>
+<%= @link.title %>
+<%= @link.url %>
+
+<%= link_to("Links", links_url) %>
+<%= link_to("Edit Link", edit_link_url) %>
+
+<% @link.comments.each do |comment| %>
+  <%= comment.body %>
+  <%= button_to("Remove Comment", comment_url, method: :delete) %>
+<% end %>
+
+<h3>Add Comment</h3>
+
+<h2>Sign In</h2>
+
+<form class="" action="<%= comments_url %>" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+  <label>
+    Comment
+    <input type="text" name="comment[body]" value="">
+  </label>
+
+  <input type="text" name="comment[link_id]" value="<%= @link.id %>">
+
+  <input type="submit" name="" value="Add Comment">
+</form>
